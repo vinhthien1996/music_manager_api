@@ -6,8 +6,8 @@ import java.util.Map;
 
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,17 +27,22 @@ public class GenreController {
 
 	@Autowired
 	GenreService service;
+	@Autowired
+	SimpMessagingTemplate template;
 
+//	GET LIST GENRE
 	@GetMapping
 	public List<GenreVO> getGenre() {
 		return service.getAllGenre();
 	}
 
+//	GET GENRE BY ID
 	@GetMapping("/{id}")
 	public Genre getGenreById(@PathVariable int id) {
 		return service.getGenreById(id);
 	}
 	
+//	GET NUM PAGE BY LIMIT
 	@GetMapping("/page/{limit}")
 	public ResponseEntity countGenre(@PathVariable int limit) {
 		int page = service.countGenre(limit);
@@ -46,25 +51,25 @@ public class GenreController {
 		return ResponseEntity.status(200).body(message);
 	}
 	
+//	GET LIST GENRE PAGINATION
 	@GetMapping("/page/{page}/{limit}")
 	public List<GenreVO> getGenrePage(@PathVariable int page, @PathVariable int limit) {
 		return service.getGenrePage(page, limit);
 	}
 
+//	CREATE GENRE
 	@PostMapping
 	public ResponseEntity saveGenre(@RequestBody Genre genre) {
 		Genre data = service.createGenre(genre);
 		if (data == null) {
 			return ResponseEntity.status(409).body("Genre name already exists!");
 		}
+		template.convertAndSend("/topic/genre", true);
+		template.convertAndSend("/topic/song", true);
 		return ResponseEntity.status(200).body(data);
 	}
 
-	private ResponseEntity<Genre> ResponseEntity(HttpStatus notFound) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+//	UPDATE GENRE
 	@PutMapping("/{id}")
 	public ResponseEntity updaGenre(@PathVariable int id, @RequestBody Genre genre) {
 		genre.setGenre_id(id);
@@ -73,14 +78,18 @@ public class GenreController {
 		if (data == null) {
 			return ResponseEntity.status(409).body("Genre name already exists!");
 		}
+		template.convertAndSend("/topic/genre", true);
+		template.convertAndSend("/topic/song", true);
 		return ResponseEntity.status(200).body(data);
 	}
 
+//	DELETE GENRE
 	@DeleteMapping("/{id}")
 	public ResponseEntity deleteProduct(@PathVariable int id) {
 		service.deleteGenre(id);
 		Map<String, String> message = new HashMap<String, String>();
 		message.put("message", "Genre deleted successfully");
+		template.convertAndSend("/topic/genre", true);
 		return ResponseEntity.status(200).body(message);
 	}
 }

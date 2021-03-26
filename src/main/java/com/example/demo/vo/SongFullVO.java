@@ -11,13 +11,14 @@ public class SongFullVO {
 	private String musician_name;
 	private String singer_name;
 	private boolean favorite;
+	private String url;
 
 	public SongFullVO() {
 		super();
 	}
 
 	public SongFullVO(int song_id, String song_name, Timestamp release_time, String genre_name, String musician_name,
-			String singer_name, boolean favorite) {
+			String singer_name, boolean favorite, String url) {
 		super();
 		this.song_id = song_id;
 		this.song_name = song_name;
@@ -26,6 +27,7 @@ public class SongFullVO {
 		this.musician_name = musician_name;
 		this.singer_name = singer_name;
 		this.favorite = favorite;
+		this.url = url;
 	}
 
 	public int getSong_id() {
@@ -84,4 +86,12 @@ public class SongFullVO {
 		this.favorite = favorite;
 	}
 
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
+	
 }

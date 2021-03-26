@@ -33,13 +33,14 @@ public class Song {
 	
 	@Column(name = "favorite", columnDefinition = "boolean default false", nullable = false)
 	private boolean favorite;
+	private String url;
 
 	public Song() {
 		super();
 	}
 
 	public Song(int song_id, String song_name, Timestamp release_time, Genre genre, Musician musician, Singer singer,
-			boolean favorite) {
+			boolean favorite, String url) {
 		super();
 		this.song_id = song_id;
 		this.song_name = song_name;
@@ -48,6 +49,7 @@ public class Song {
 		this.musician = musician;
 		this.singer = singer;
 		this.favorite = favorite;
+		this.url = url;
 	}
 
 	public int getSong_id() {
@@ -105,5 +107,13 @@ public class Song {
 	public void setFavorite(boolean favorite) {
 		this.favorite = favorite;
 	}
+
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
+	}	
 
 }

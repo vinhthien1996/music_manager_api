@@ -3,7 +3,6 @@ package com.example.demo.service;
 import java.util.List;
 
 import com.example.demo.entity.Musician;
-import com.example.demo.vo.GenreVO;
 import com.example.demo.vo.MusicianVO;
 
 public interface MusicianService {

@@ -2,12 +2,10 @@ package com.example.demo.entity;
 
 import java.sql.Timestamp;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 
 @Entity
 public class Singer {
@@ -18,17 +16,20 @@ public class Singer {
 	private String singer_name;
 	private String singer_sex;
 	private Timestamp singer_birthday;
+	private String singer_avatar;
 
 	public Singer() {
 		super();
 	}
 
-	public Singer(int singer_id, String singer_name, String singer_sex, Timestamp singer_birthday) {
+	public Singer(int singer_id, String singer_name, String singer_sex, Timestamp singer_birthday,
+			String singer_avatar) {
 		super();
 		this.singer_id = singer_id;
 		this.singer_name = singer_name;
 		this.singer_sex = singer_sex;
 		this.singer_birthday = singer_birthday;
+		this.singer_avatar = singer_avatar;
 	}
 
 	public int getSinger_id() {
@@ -63,4 +64,13 @@ public class Singer {
 		this.singer_birthday = singer_birthday;
 	}
 
+	public String getSinger_avatar() {
+		return singer_avatar;
+	}
+
+	public void setSinger_avatar(String singer_avatar) {
+		this.singer_avatar = singer_avatar;
+	}
+
+	
 }
