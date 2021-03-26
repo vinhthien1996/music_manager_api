@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -127,7 +126,9 @@ public class SongController {
 
 //	UPDATE SONG
 	@PutMapping(value = "/{id}", consumes = { "multipart/form-data" })
-	public ResponseEntity updaSong(@PathVariable int id, @RequestParam(value = "file", required = false) MultipartFile file,
+	public ResponseEntity updaSong(
+			@PathVariable int id,
+			@RequestParam(value = "file", required = false) MultipartFile file,
 			@RequestParam("song_name") String song_name,
 			@RequestParam("release_time") Timestamp release_time,
 			@RequestParam("genre_name") String genre_name,

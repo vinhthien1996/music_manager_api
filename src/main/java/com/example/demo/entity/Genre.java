@@ -22,6 +22,12 @@ public class Genre {
 		this.genre_id = genre_id;
 		this.genre_name = genre_name;
 	}
+	
+	public Genre(String genre_name) {
+		super();
+		this.genre_name = genre_name;
+	}
+
 
 	public int getGenre_id() {
 		return genre_id;

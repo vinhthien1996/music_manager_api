@@ -41,21 +41,6 @@ public class GenreController {
 	public Genre getGenreById(@PathVariable int id) {
 		return service.getGenreById(id);
 	}
-	
-//	GET NUM PAGE BY LIMIT
-	@GetMapping("/page/{limit}")
-	public ResponseEntity countGenre(@PathVariable int limit) {
-		int page = service.countGenre(limit);
-		Map message = new HashMap<String, Integer>();
-		message.put("page", page);
-		return ResponseEntity.status(200).body(message);
-	}
-	
-//	GET LIST GENRE PAGINATION
-	@GetMapping("/page/{page}/{limit}")
-	public List<GenreVO> getGenrePage(@PathVariable int page, @PathVariable int limit) {
-		return service.getGenrePage(page, limit);
-	}
 
 //	CREATE GENRE
 	@PostMapping

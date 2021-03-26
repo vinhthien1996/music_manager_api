@@ -14,7 +14,7 @@ public class MusicManagerApplication {
         @Override
         public void addResourceHandlers(ResourceHandlerRegistry registry) {
             registry.addResourceHandler("/**")
-            .addResourceLocations("classpath:/static/","classpath:/music/")
+            .addResourceLocations("classpath:/static/","classpath:/music/","classpath:/images/")
             .setCachePeriod(0);
         }
     }

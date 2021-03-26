@@ -63,7 +63,7 @@ public class SongServiceImpl implements SongService {
 			try {
 				Date date = new Date();
 				long now = date.getTime();
-				FileCopyUtils.copy(file.getBytes(), new File(this.fileUpload + now + "_" + file.getOriginalFilename()));
+				FileCopyUtils.copy(file.getBytes(), new File(this.fileUpload + "/music/" + now + "_" + file.getOriginalFilename()));
 				song.setUrl(now + "_" + file.getOriginalFilename());
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -109,7 +109,7 @@ public class SongServiceImpl implements SongService {
 			try {
 				Date date = new Date();
 				long now = date.getTime();
-				FileCopyUtils.copy(file.getBytes(), new File(this.fileUpload + now + "_" + file.getOriginalFilename()));
+				FileCopyUtils.copy(file.getBytes(), new File(this.fileUpload + "/music/" + now + "_" + file.getOriginalFilename()));
 				
 //				DELETE OLD MP3 FILE
 				File deleteFile = new File("./src/main/resources/static/music/" + findMySong.getUrl());
